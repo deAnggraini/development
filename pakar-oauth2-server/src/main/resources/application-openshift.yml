@@ -1,7 +1,7 @@
 server:
   port: 13081
 spring:
-  profiles: dev-ogya
+  profiles: openshift
   rest:
     timeout:
       read: 60000
