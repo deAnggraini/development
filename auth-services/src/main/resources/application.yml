@@ -1,7 +1,7 @@
 server:
   port: 13085
 spring:
-  profiles: dev-ogya
+  profiles: openshift
   dataSource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb

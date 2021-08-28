@@ -1,5 +1,5 @@
 server:
-  port: ${port:8082}
+  port: 12082
 upload:
   path:
     base: /var/bca/images
@@ -13,8 +13,6 @@ spring:
     timeout:
       read: 60000
       connection: 60000
-  profiles:
-    active: "dev-local"
   main:
     banner-mode: "off"
   jpa:
@@ -38,74 +36,31 @@ spring:
     file-type: image/png,image/jpeg,image/gif,image/avif,image/apng,image/svg+xml,image/bmp,image/x-icon,image/tiff
   article:
     param-tag: "{}|[]"
----
-spring:
-  profiles: dev-local
+    width-article-image: 307
+    height-article-image: 425
+    file-type: image/png,image/jpeg
+    max-size: 700000
+  profiles: openshift
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: https://login.domain.com/xxx/keys # JSON Web Key URI to use to verify the JWT token.
-          issuer-uri: http://pakar-oauth-server:12081/api/auth/me
-        token-info-uri: http://pakar-oauth-server:12081/oauth/check_token
+          jwk-set-uri: http://36.89.25.220:13081/oauth/token_key # JSON Web Key URI to use to verify the JWT token.
+          issuer-uri: http://36.89.25.220:13081/api/auth/me
+        token-info-uri: http://36.89.25.220:13081/oauth/check_token
+        auth-server: http://36.89.25.220:13081
+        doc-server: http://36.89.25.220:13082
+        wf-server: http://36.89.25.220:13083
       server:
-        url: http://pakar-oauth-server:12081/oauth/token
+        url: http://36.89.25.220:13081
       clientId: 8C21EBEEB1AA3FBFE05400144FFBD319
       clientSecret: da82edc6dcc1af30
     jwt:
       signingkey: pakar123
   dataSource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://host.docker.internal:5432/postgres
-    username: postgres
-    password: password
-    hikari:
-      connectionTimeout: 20000
-      maximumPoolSize: 5
----
-spring:
-  profiles: dev-ogya1
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: https://login.domain.com/xxx/keys # JSON Web Key URI to use to verify the JWT token.
-          issuer-uri: http://192.168.181.70:13081/api/auth/me
-        token-info-uri: http://192.168.181.70:13081/oauth/check_token
-      server:
-        url: http://192.168.181.70:13081/oauth/token
-      clientId: 8C21EBEEB1AA3FBFE05400144FFBD319
-      clientSecret: da82edc6dcc1af30
-    jwt:
-      signingkey: pakar123
-  dataSource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.181.95:5432/pakardb2
-    username: pakar2
-    password: pakar123
-    hikari:
-      connectionTimeout: 20000
-      maximumPoolSize: 5
----
-spring:
-  profiles: dev-ogya2
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: https://login.domain.com/xxx/keys # JSON Web Key URI to use to verify the JWT token.
-          issuer-uri: http://192.168.181.70:13081/api/auth/me
-        token-info-uri: http://192.168.181.70:13081/oauth/check_token
-      server:
-        url: http://192.168.181.70:13081/oauth/token
-      clientId: 8C21EBEEB1AA3FBFE05400144FFBD319
-      clientSecret: da82edc6dcc1af30
-    jwt:
-      signingkey: pakar123
-  dataSource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.181.95:5432/pakardb2
-    username: pakar2
+    url: jdbc:postgresql://36.89.25.220:5432/pakardb5
+    username: pakar5
     password: pakar123
     hikari:
       connectionTimeout: 20000
