@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 13081
 spring:
   profiles: dev-ogya
   rest:
@@ -22,7 +22,7 @@ spring:
     locking-time-failed-login : 30
   eai:
     ad:
-      loginUri: http://36.89.25.220:12085/ad-gateways/verify1
+      loginUri: http://36.89.25.220:13085/ad-gateways/verify1
       clientId: 8C21EBEEB1AA3FBFE05400144FFBD319
       applicationID: PRJ1
       key: 123456789013245678901234
