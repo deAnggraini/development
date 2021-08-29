@@ -1,5 +1,5 @@
 server:
-  port: 12082
+  port: ${port:13082}
 upload:
   path:
     base: /var/bca/images
