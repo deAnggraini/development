@@ -1,12 +1,11 @@
 server:
   port: ${port:13081}
 spring:
+  profiles: openshift
   rest:
     timeout:
       read: 60000
       connection: 60000
-  profiles:
-    active: "openshift"
   main:
     banner-mode: "off"
   jpa:
@@ -20,10 +19,7 @@ spring:
         dialect:org.hibernate.dialect.PostgreSQL10Dialect
   login:
     max-failed-login: 5
-    locking-time-failed-login: 30
----
-spring:
-  profiles: openshift
+    locking-time-failed-login : 30
   eai:
     ad:
       loginUri: http://36.89.25.220:13085/ad-gateways/verify1
@@ -41,12 +37,12 @@ spring:
       refreshTokenValiditySeconds: 2592000
     jwt:
       signingkey: pakar123
-  dataSource:
+  dataSource: 
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://36.89.25.220:5432/pakardb5
     username: pakar5
     password: pakar123
     hikari:
       connectionTimeout: 20000
-      maximumPoolSize: 5
----
+      maximumPoolSize: 5 
+ 
